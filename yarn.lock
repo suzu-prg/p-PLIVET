@@ -1503,10 +1503,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-bootstrap@0.32.24":
-  version "0.32.24"
-  resolved "https://registry.yarnpkg.com/@types/react-bootstrap/-/react-bootstrap-0.32.24.tgz#d08176d8927fc52c5f31a9e8b674c5b72c627d12"
-  integrity sha512-dbLBBupieo25qeGGaqeiWwOe8Q4ZPM5gIDeLT/F8UL4J3nuiJKuXhxFC+3EAwRvxhfuS4l64XkO8ikfX06LcIg==
+"@types/react-bootstrap@0.32.27":
+  version "0.32.27"
+  resolved "https://registry.yarnpkg.com/@types/react-bootstrap/-/react-bootstrap-0.32.27.tgz#5ce2967e13838fe4a3fc6a1bf551d3c02997bad7"
+  integrity sha512-0VG+X5va4NllhDGbSwuL/ysy68L6hKqNl0d4DN4lUz/JCriZYKRs8MAII411xpbie/Oeu5Fv/C2Gsm8kF08N1Q==
   dependencies:
     "@types/react" "*"
 
