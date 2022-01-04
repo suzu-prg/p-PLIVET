@@ -16,5 +16,5 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BASE_BRANCH: master
         BRANCH: gh-pages
-        FOLDER: dist
+        FOLDER: .
         BUILD_SCRIPT: yarn install --frozen-lockfile --ignore-optional && yarn test && yarn build
