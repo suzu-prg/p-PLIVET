@@ -13,8 +13,5 @@ jobs:
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v4
       with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BASE_BRANCH: master
-        BRANCH: gh-pages
-        FOLDER: .
-        BUILD_SCRIPT: yarn install --frozen-lockfile --ignore-optional && yarn test && yarn build
+        branch: gh-pages
+        folder: .
