@@ -1,0 +1,15 @@
+.editorMain {
+    border: 1px black solid;
+    margin: 1px;
+}
+
+.ace_gutter-cell.ace_breakpoint{ 
+    background-image: url('../images/breakpoint.png');
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.error_line {
+    background-color: #f2dede;
+    position: absolute;
+}
