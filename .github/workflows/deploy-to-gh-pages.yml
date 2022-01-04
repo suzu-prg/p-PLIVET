@@ -13,9 +13,9 @@ jobs:
     - name: Install and Build
       run: |
         yarn install --frozen-lockfile --ignore-optional && yarn test && yarn build
-    
+
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v4
       with:
         branch: gh-pages
-        folder: .
+        folder: dist
