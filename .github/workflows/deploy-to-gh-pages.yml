@@ -9,13 +9,15 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Install and Build
-      run: |
-        yarn install --frozen-lockfile --ignore-optional && yarn test && yarn build
-
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v4
+    - name: Setup Node with yarn cache
+      uses: actions/setup-node@v2
       with:
-        branch: gh-pages
-        folder: dist
+        node-version: 16.13.2
+        cache: yarn
+    - name: Install and Build 🔧
+      run: yarn install --frozen-lockfile --ignore-optional && yarn test && yarn build
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.2
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: dist # The folder the action should deploy.
