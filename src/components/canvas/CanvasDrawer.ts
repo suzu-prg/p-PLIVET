@@ -388,6 +388,10 @@ export class CanvasVariable {
       valueStr += ` '${String.fromCharCode(valueStr)}'`;
     }
 
+    if (name === 'b' || name === 'c') {
+      valueStr = 'non-disp';
+    }
+
     const addressStr = `&${name}(0x${address.toString(16).toUpperCase()}) `;
     this.pushCell(type);
     this.pushCell(name);

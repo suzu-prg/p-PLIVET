@@ -25,58 +25,72 @@ export default {
   continueDebug: '続行',
   restart: '再実行',
   rememberCommand: 'この選択を記憶する',
-  sourceCodeCcpp: String.raw`#include<stdio.h>
-int recursiveToThree(int n){
-  printf("%d th\n", n + 1);
-  if(n < 3){
-    int r = recursiveToThree(n + 1);
-    n = r;
-  }
-  return n;
-}
-int main(){
-  int n = 0;//変数定義
+  sourceCodeCcpp: String.raw`#include <stdio.h>
 
-  n = recursiveToThree(0);//再帰関数呼出
-
-  int arr[5] = {1, 2, 3};//配列変数
-
-  int* ptr = &arr[2];//ポインタ変数
-  *ptr = 5;
-
-  //動的メモリ確保
-  int* d_arry = malloc(sizeof(int) * 3);
-
-  //二次元ポインタ配列の動的メモリ配列
-  int* pd_arr[2];
-  pd_arr[0] = malloc(sizeof(int) * 2);
-  pd_arr[1] = malloc(sizeof(int) * 2);
-
-  free(pd_arr[0]);//メモリの解放
-
-  printf("Hello,world!\n");//標準出力
-
-  //ファイル出力
-  {
-    FILE* fp=NULL;
-    fp = fopen("PLIVET.txt", "w");
-    fputs("PLIVET", fp);
-    fclose(fp);
-  }
-
-  //ファイル入力
-  {
-    FILE* fp=NULL;
-    char buf[7];
-    fp = fopen("PLIVET.txt", "r");
-    while(fgets(buf,10,fp) != NULL) {
-      printf("%s",buf);
+int main(void) {
+    int a = 0, b = 1, c = 2, d = 3, e = 4;
+    while (a < e) {
+        a = b + c;
+        b = c * d;
+        c = a + e;
+        d = a / 3;
+        e = e + 4;
     }
-    fclose(fp);
-  }
-
-  return 0;
+    printf("%d %d %d %d %d\n", a, b, c, d, e);
+    return 0;
 }`,
+  //   sourceCodeCcpp: String.raw`#include<stdio.h>
+  // int recursiveToThree(int n){
+  //   printf("%d th\n", n + 1);
+  //   if(n < 3){
+  //     int r = recursiveToThree(n + 1);
+  //     n = r;
+  //   }
+  //   return n;
+  // }
+  // int main(){
+  //   int n = 0;//変数定義
+
+  //   n = recursiveToThree(0);//再帰関数呼出
+
+  //   int arr[5] = {1, 2, 3};//配列変数
+
+  //   int* ptr = &arr[2];//ポインタ変数
+  //   *ptr = 5;
+
+  //   //動的メモリ確保
+  //   int* d_arry = malloc(sizeof(int) * 3);
+
+  //   //二次元ポインタ配列の動的メモリ配列
+  //   int* pd_arr[2];
+  //   pd_arr[0] = malloc(sizeof(int) * 2);
+  //   pd_arr[1] = malloc(sizeof(int) * 2);
+
+  //   free(pd_arr[0]);//メモリの解放
+
+  //   printf("Hello,world!\n");//標準出力
+
+  //   //ファイル出力
+  //   {
+  //     FILE* fp=NULL;
+  //     fp = fopen("PLIVET.txt", "w");
+  //     fputs("PLIVET", fp);
+  //     fclose(fp);
+  //   }
+
+  //   //ファイル入力
+  //   {
+  //     FILE* fp=NULL;
+  //     char buf[7];
+  //     fp = fopen("PLIVET.txt", "r");
+  //     while(fgets(buf,10,fp) != NULL) {
+  //       printf("%s",buf);
+  //     }
+  //     fclose(fp);
+  //   }
+
+  //   return 0;
+  // }`,
   sourceCodeJava: String.raw`import java.util.*;
 public class Main {
   public static void main(String[] args) {
