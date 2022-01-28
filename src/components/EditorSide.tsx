@@ -6,6 +6,7 @@ import { LangProps, ProgLangProps } from './Props';
 import Editor from './Editor';
 import Console from './Console';
 import FileForm from './FileForm';
+import AnswerForm from './AnswerForm';
 
 type Props = LangProps & ProgLangProps;
 
@@ -29,6 +30,9 @@ export default class EditorSide extends React.Component<Props, State> {
         </Col>
         <Col lg={12} md={12} sm={12} xs={12}>
           <FileForm lang={this.props.lang} />
+        </Col>
+        <Col lg={12} md={12} sm={12} xs={12}>
+          <AnswerForm lang={this.props.lang} />
         </Col>
       </Row>
     );

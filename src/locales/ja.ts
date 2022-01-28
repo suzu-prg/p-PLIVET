@@ -25,6 +25,9 @@ export default {
   continueDebug: '続行',
   restart: '再実行',
   rememberCommand: 'この選択を記憶する',
+  submit: '提出',
+  correct: '正解',
+  wrong: '不正解',
   sourceCodeCcpp: String.raw`#include <stdio.h>
 
 int main(void) {
