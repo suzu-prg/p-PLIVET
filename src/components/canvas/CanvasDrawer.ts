@@ -5,6 +5,7 @@ import { Vector } from 'vector2d';
 import { signal } from '../emitter';
 import Hashids from 'hashids/cjs';
 import stringHash from 'string-hash';
+import hideVariable from '../../non-display/hideVariable';
 
 export type CanvasRow = CanvasCell[];
 export type CanvasTable = CanvasRow[];
@@ -388,7 +389,7 @@ export class CanvasVariable {
       valueStr += ` '${String.fromCharCode(valueStr)}'`;
     }
 
-    if (name === 'b' || name === 'c') {
+    if (hideVariable(name)) {
       valueStr = 'non-disp';
     }
 

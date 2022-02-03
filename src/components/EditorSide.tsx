@@ -4,8 +4,8 @@ import Col from 'react-bootstrap/lib/Col';
 import Menu from './menus/Menu';
 import { LangProps, ProgLangProps } from './Props';
 import Editor from './Editor';
-import Console from './Console';
-import FileForm from './FileForm';
+// import Console from './Console';
+// import FileForm from './FileForm';
 import AnswerForm from './AnswerForm';
 
 type Props = LangProps & ProgLangProps;
@@ -25,12 +25,14 @@ export default class EditorSide extends React.Component<Props, State> {
         <Col lg={12} md={12} sm={12} xs={12}>
           <Editor lang={this.props.lang} progLang={this.props.progLang} />
         </Col>
+        {/*
         <Col lg={12} md={12} sm={12} xs={12}>
           <Console lang={this.props.lang} />
         </Col>
         <Col lg={12} md={12} sm={12} xs={12}>
           <FileForm lang={this.props.lang} />
         </Col>
+        */}
         <Col lg={12} md={12} sm={12} xs={12}>
           <AnswerForm lang={this.props.lang} />
         </Col>
