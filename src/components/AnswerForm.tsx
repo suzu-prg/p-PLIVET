@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/lib/Button';
 import translate from '../locales/translate';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
-import decideDifficulty from '../non-display/decideDifficulty';
+// import decideDifficulty from '../non-display/decideDifficulty';
+import { setVariableList } from '../non-display/variableList';
 
 import '../css/fileform.css';
 import { LangProps } from './Props';
@@ -18,12 +19,19 @@ interface State {
   value: string;
   ans: string;
   printed: boolean;
+  variableList: string;
 }
 
 export default class AnswerForm extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { output: '', value: '', ans: '', printed: false };
+    this.state = {
+      output: '',
+      value: '',
+      ans: '',
+      printed: false,
+      variableList: '',
+    };
     this.onChangeValue = this.onChangeValue.bind(this);
     slot('changeOutput', (output: string) => {
       this.setState({ output });
@@ -41,14 +49,24 @@ export default class AnswerForm extends React.Component<Props, State> {
 
   checkAnswer() {
     let outputNormalized = this.state.output.replace(/\r?\n/g, '');
+    let valueNormalized = this.state.value.replace(/\r?\n/g, '');
     if (outputNormalized === '') {
       this.setState({ ans: '' });
       return;
     }
-    if (this.state.value === outputNormalized) {
+    if (valueNormalized === outputNormalized) {
       this.setState({ ans: 'correct' });
     } else {
       this.setState({ ans: 'wrong' });
+    }
+  }
+
+  onChangeVariableList(e: any) {
+    this.setState({ variableList: e.target.value });
+  }
+  setVariable() {
+    for (const variable of this.state.variableList.split(' ')) {
+      setVariableList(variable);
     }
   }
 
@@ -86,9 +104,9 @@ export default class AnswerForm extends React.Component<Props, State> {
           {translate(this.props.lang, this.state.ans)}
         </Col>
         <Col lg={12} md={12} sm={12} xs={12}>
-          {this.state.output}
+          {/*this.state.output*/}
         </Col>
-        <Col lg={12} md={12} sm={12} xs={12}>
+        {/* <Col lg={12} md={12} sm={12} xs={12}>
           難易度ボタン
         </Col>
         <Col lg={12} md={12} sm={12} xs={12}>
@@ -102,6 +120,31 @@ export default class AnswerForm extends React.Component<Props, State> {
               {i}
             </Button>
           ))}
+        </Col> */}
+        <Col lg={12} md={12} sm={12} xs={12}>
+          隠す変数リスト（スペース区切りで入力）
+        </Col>
+        <Col lg={12} md={12} sm={12} xs={12}>
+          <Form inline>
+            <FormGroup>
+              {/* inputの改行でのリロード回避，ダミーinputを置く */}
+              <FormControl style={{ display: 'none' }} />
+              <FormControl
+                value={this.state.variableList}
+                onChange={(event) => {
+                  this.onChangeVariableList(event as any);
+                }}
+              />
+            </FormGroup>
+            <Button
+              type="button"
+              onClick={() => {
+                this.setVariable();
+              }}
+            >
+              設定
+            </Button>
+          </Form>
         </Col>
       </Row>
     );
