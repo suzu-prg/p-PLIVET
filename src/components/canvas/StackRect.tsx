@@ -28,6 +28,7 @@ export default class StackRect extends React.Component<Props, State> {
         fontStyle="bold"
         align="center"
         isVisible={true}
+        fill="black"
       />
     );
   }

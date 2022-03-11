@@ -13,19 +13,47 @@ interface Props {
   onClick?: () => void;
   isVisible: boolean;
   colors?: string[];
+  /*isValueCell?: boolean;*/
+  fill: string;
 }
 
-interface State {}
+interface State {
+  /*fill: string;*/
+}
 
 export default class TextWithRect extends React.Component<Props, State> {
+  public static readonly ACCENT_COLOR = '#ff4b00';
   constructor(props: Props) {
     super(props);
+    // this.state = {
+    //   fill: /*props.isValueCell ? TextWithRect.ACCENT_COLOR : */ 'black',
+    // };
   }
+  // componentWillReceiveProps(nextProps: Props) {
+  //   if (nextProps.isValueCell) {
+  //     if (nextProps.text !== this.props.text) {
+  //       // console.log(nextProps.text, this.props.text);
+  //       this.setState({ fill: TextWithRect.ACCENT_COLOR });
+  //     } else {
+  //       this.setState({ fill: 'black' });
+  //     }
+  //   }
+  // }
   render() {
     if (!this.props.isVisible) {
       return null;
     }
-    const { x, y, text, width, align, fontStyle, onClick, colors } = this.props;
+    const {
+      x,
+      y,
+      text,
+      width,
+      align,
+      fontStyle,
+      onClick,
+      colors,
+      fill,
+    } = this.props;
     const height = CanvasCell.HEIGHT;
     const isAlignCenter = align && align === 'center';
     const colorAndPos: (string | number)[] = [];
@@ -41,7 +69,14 @@ export default class TextWithRect extends React.Component<Props, State> {
       // RGBA hexadecimal notation #RRGGBBAA (e.g. #00000000)
       colorAndPos.push(0, 'rgba(0,0,0,0)', 1, 'rgba(0,0,0,0)');
     }
-
+    // if (this.state.fill === TextWithRect.ACCENT_COLOR) {
+    //   let result = window.prompt(this.props.text + 'の値は？');
+    //   if (result !== null && result === this.props.text) {
+    //     console.log('correct');
+    //   } else {
+    //     console.log('wrong');
+    //   }
+    // }
     return (
       <React.Fragment>
         <Rect
@@ -68,6 +103,7 @@ export default class TextWithRect extends React.Component<Props, State> {
           text={text}
           fontSize={CanvasCell.FONT_SIZE}
           onClick={onClick ? onClick : undefined}
+          fill={fill}
         />
       </React.Fragment>
     );
