@@ -9,32 +9,36 @@ interface Props {
 
 interface State {
   fill: string;
+  show: boolean;
 }
 
-export default class VariableRect extends React.Component<Props, State> {
+export default class VariableRect extends React.Component<Props, State, any> {
   constructor(props: Props) {
     super(props);
     this.state = {
       fill: TextWithRect.ACCENT_COLOR,
+      show: true,
     };
-    const canvasRow = this.props.canvasRow;
-    const variableName = canvasRow[canvasRow.length - 3].getText();
-    const text = canvasRow[canvasRow.length - 2].getText();
-    let correct = false;
-    for (let i = 0; i < 3; ++i) {
-      const result = window.prompt(variableName + 'の値は？');
-      if (result !== null && result === text) {
-        window.alert('correct');
-        correct = true;
-        break;
-      } else {
-        window.alert('wrong');
-      }
-    }
-    if (!correct) {
-      window.alert('answer: ' + text);
-    }
+
+    // const canvasRow = this.props.canvasRow;
+    // const variableName = canvasRow[canvasRow.length - 3].getText();
+    // const text = canvasRow[canvasRow.length - 2].getText();
+    // let correct = false;
+    // for (let i = 0; i < 3; ++i) {
+    //   const result = window.prompt(variableName + 'の値は？');
+    //   if (result !== null && result === text) {
+    //     window.alert('correct');
+    //     correct = true;
+    //     break;
+    //   } else {
+    //     window.alert('wrong');
+    //   }
+    // }
+    // if (!correct) {
+    //   window.alert('answer: ' + text);
+    // }
   }
+
   componentWillReceiveProps(nextProps: Props) {
     const nextCanvasRow = nextProps.canvasRow;
     console.log(nextCanvasRow[nextCanvasRow.length - 2].getText());
@@ -42,6 +46,25 @@ export default class VariableRect extends React.Component<Props, State> {
   }
   render() {
     const canvasRow = this.props.canvasRow;
+
+    if (this.state.fill === TextWithRect.ACCENT_COLOR) {
+      // const variableName = canvasRow[canvasRow.length - 3].getText();
+      // const text = canvasRow[canvasRow.length - 2].getText();
+      // let correct = false;
+      // for (let i = 0; i < 3; ++i) {
+      //   const result = window.prompt(variableName + 'の値は？');
+      //   if (result !== null && result === text) {
+      //     window.alert('correct');
+      //     correct = true;
+      //     break;
+      //   } else {
+      //     window.alert('wrong');
+      //   }
+      // }
+      // if (!correct) {
+      //   window.alert('answer: ' + text);
+      // }
+    }
     const list = canvasRow.map(
       (cell: CanvasCell, index: number, array: CanvasCell[]) => {
         const { width, isVisible, key } = cell;

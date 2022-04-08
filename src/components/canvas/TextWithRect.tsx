@@ -2,6 +2,7 @@ import React from 'react';
 import { Rect, Text } from 'react-konva';
 import { CanvasCell } from './CanvasDrawer';
 import hexToRgba from '../Color';
+import { ResourceContext } from '../ResourceContext';
 
 interface Props {
   x: number;
@@ -22,6 +23,9 @@ interface State {
 }
 
 export default class TextWithRect extends React.Component<Props, State> {
+  static contextType = ResourceContext;
+  context!: React.ContextType<typeof ResourceContext>;
+
   public static readonly ACCENT_COLOR = '#ff4b00';
   constructor(props: Props) {
     super(props);
@@ -54,6 +58,12 @@ export default class TextWithRect extends React.Component<Props, State> {
       colors,
       fill,
     } = this.props;
+
+    const { answered, toggleAnswered } = this.context;
+    toggleAnswered(false);
+    console.log(answered);
+    console.log(toggleAnswered);
+
     const height = CanvasCell.HEIGHT;
     const isAlignCenter = align && align === 'center';
     const colorAndPos: (string | number)[] = [];
@@ -77,6 +87,19 @@ export default class TextWithRect extends React.Component<Props, State> {
     //     console.log('wrong');
     //   }
     // }
+    // const stroke =
+    //   fill === TextWithRect.ACCENT_COLOR && !answered
+    //     ? TextWithRect.ACCENT_COLOR
+    //     : `black`;
+    // console.log(stroke);
+    const textOrBlank =
+      fill === TextWithRect.ACCENT_COLOR && !answered ? '?' : text;
+    const fontBold =
+      fill === TextWithRect.ACCENT_COLOR
+        ? 'bold'
+        : fontStyle
+        ? fontStyle
+        : 'normal';
     return (
       <React.Fragment>
         <Rect
@@ -84,8 +107,8 @@ export default class TextWithRect extends React.Component<Props, State> {
           y={y}
           width={width}
           height={height}
-          stroke={`black`}
-          // fill="rgba(0,0,0,127)"
+          stroke={'black'}
+          fill={fill === 'black' ? 'white' : fill}
           fillLinearGradientStartPoint={{ x: 0, y: 0 }}
           fillLinearGradientEndPoint={{ x: width, y: 0 }}
           fillLinearGradientColorStops={colorAndPos}
@@ -94,16 +117,16 @@ export default class TextWithRect extends React.Component<Props, State> {
           x={x}
           y={y}
           fontFamily="Consolas, 'Courier New', monospace"
-          fontStyle={fontStyle ? fontStyle : 'normal'}
+          fontStyle={fontBold}
           align={align ? align : 'left'}
           verticalAlign="middle"
           offsetX={isAlignCenter ? 0 : -CanvasCell.FONT_SIZE / 2}
           width={width}
           height={height}
-          text={text}
+          text={textOrBlank}
           fontSize={CanvasCell.FONT_SIZE}
           onClick={onClick ? onClick : undefined}
-          fill={fill}
+          fill={fill === TextWithRect.ACCENT_COLOR ? 'white' : fill}
         />
       </React.Fragment>
     );

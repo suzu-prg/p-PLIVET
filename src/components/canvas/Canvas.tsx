@@ -12,15 +12,25 @@ interface Props {
 }
 interface State {
   execState?: ExecState;
+  show: boolean;
 }
-
+// Canvas以外の場所，もっと上の段階で新規・更新かどうかを判定する
+// コンテキスト？
 export default class Canvas extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { execState: undefined };
+    this.state = { execState: undefined, show: false };
     slot('draw', (execState: ExecState) => this.setState({ execState }));
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+  handleClose() {
+    this.setState({ show: false });
   }
 
+  handleShow() {
+    this.setState({ show: true });
+  }
   render() {
     return (
       <div id="display">
