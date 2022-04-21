@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 // import decideDifficulty from '../non-display/decideDifficulty';
 import { setVariableList } from '../non-display/variableList';
+import { ResourceContext, AnswerContextType } from './ResourceContext';
 
 import '../css/fileform.css';
 import { LangProps } from './Props';
@@ -71,6 +72,7 @@ export default class AnswerForm extends React.Component<Props, State> {
   }
 
   render() {
+    const { answered, toggleAnswered }: AnswerContextType = this.context;
     return (
       <Row>
         <Col lg={12} md={12} sm={12} xs={12}>
@@ -146,7 +148,33 @@ export default class AnswerForm extends React.Component<Props, State> {
             </Button>
           </Form>
         </Col>
+        <Col lg={12} md={12} sm={12} xs={12}>
+          隠れている変数の値は？
+        </Col>
+        <Col lg={12} md={12} sm={12} xs={12}>
+          <Form inline>
+            <FormGroup>
+              {/* inputの改行でのリロード回避，ダミーinputを置く */}
+              <FormControl style={{ display: 'none' }} />
+              <FormControl
+                value={answered ? 'true' : 'false'}
+                onChange={(event) => {
+                  this.onChangeVariableList(event as any);
+                }}
+              />
+            </FormGroup>
+            <Button
+              type="button"
+              onClick={() => {
+                toggleAnswered();
+              }}
+            >
+              設定
+            </Button>
+          </Form>
+        </Col>
       </Row>
     );
   }
 }
+AnswerForm.contextType = ResourceContext;

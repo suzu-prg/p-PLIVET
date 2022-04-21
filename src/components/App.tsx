@@ -12,17 +12,18 @@ type Props = LangProps & ProgLangProps & ThemeProps;
 
 interface State {
   answered: boolean;
-  toggleAnswered: (state: boolean) => void;
+  toggleAnswered: () => void;
 }
 
-export default class App extends React.Component<Props, State, any> {
-  toggleAnswered = (state: boolean) => {
-    this.setState({
-      answered: state,
-    });
-  };
-  constructor(props: Props) {
+export default class App extends React.Component<Props, State> {
+  toggleAnswered: () => void;
+  constructor(props: any) {
     super(props);
+    this.toggleAnswered = () => {
+      this.setState((state) => ({
+        answered: !state.answered,
+      }));
+    };
     this.state = {
       answered: false,
       toggleAnswered: this.toggleAnswered,

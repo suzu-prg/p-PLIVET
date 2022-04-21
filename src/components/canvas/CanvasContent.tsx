@@ -4,6 +4,8 @@ import StackRect from './StackRect';
 import { CanvasDrawer, CanvasStack, CanvasArrow } from './CanvasDrawer';
 import { slot } from '../emitter';
 import hexToRgba from '../Color';
+import { ResourceContext, AnswerContextType } from '../ResourceContext';
+
 interface Props {
   canvasDrawer: CanvasDrawer;
 }
@@ -57,6 +59,10 @@ export default class CanvasContent extends React.Component<Props, State> {
   }
 
   render() {
+    const { answered, toggleAnswered }: AnswerContextType = this.context;
+    console.log('canvasContext: ' + answered);
+    console.log('canvasContext: ' + toggleAnswered);
+
     const canvasStacks = this.props.canvasDrawer.getCanvasStacks();
     const canvasArrows = this.props.canvasDrawer.getCanvasArrows();
     const stack = this.makeStacks(canvasStacks);
@@ -69,3 +75,4 @@ export default class CanvasContent extends React.Component<Props, State> {
     );
   }
 }
+CanvasContent.contextType = ResourceContext;

@@ -5,6 +5,8 @@ import { ExecState } from 'unicoen.ts/dist/interpreter/Engine/ExecState';
 import CanvasContent from './CanvasContent';
 import '../../css/canvas.css';
 import { CanvasDrawer } from './CanvasDrawer';
+import { ResourceContext, AnswerContextType } from '../ResourceContext';
+
 interface Props {
   width: number;
   height: number;
@@ -16,6 +18,7 @@ interface State {
 }
 // Canvas以外の場所，もっと上の段階で新規・更新かどうかを判定する
 // コンテキスト？
+
 export default class Canvas extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -32,6 +35,9 @@ export default class Canvas extends React.Component<Props, State> {
     this.setState({ show: true });
   }
   render() {
+    const { answered, toggleAnswered }: AnswerContextType = this.context;
+    console.log('canvas: ' + answered);
+    console.log('canvas: ' + toggleAnswered);
     return (
       <div id="display">
         <Stage
@@ -47,3 +53,4 @@ export default class Canvas extends React.Component<Props, State> {
     );
   }
 }
+Canvas.contextType = ResourceContext;

@@ -1,8 +1,13 @@
 import * as React from 'react';
 
-type AnswerContextType = {
+// export type AnswerContextType = {
+//   answered: boolean;
+//   toggleAnswered: (state: boolean) => void;
+// };
+
+export type AnswerContextType = {
   answered: boolean;
-  toggleAnswered: (state: boolean) => void;
+  toggleAnswered: () => void;
 };
 
 export const ResourceContext = React.createContext<AnswerContextType>({

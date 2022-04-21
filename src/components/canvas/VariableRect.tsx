@@ -2,6 +2,7 @@ import React from 'react';
 import { Group } from 'react-konva';
 import { CanvasRow, CanvasCell } from './CanvasDrawer';
 import TextWithRect from './TextWithRect';
+// import { ResourceContext, AnswerContextType } from '../ResourceContext';
 
 interface Props {
   canvasRow: CanvasRow;
@@ -46,6 +47,9 @@ export default class VariableRect extends React.Component<Props, State, any> {
   }
   render() {
     const canvasRow = this.props.canvasRow;
+    // const { answered, toggleAnswered }: AnswerContextType = this.context;
+    // console.log('VariableRect: ' + answered);
+    // console.log('VariableRect: ' + toggleAnswered);
 
     if (this.state.fill === TextWithRect.ACCENT_COLOR) {
       // const variableName = canvasRow[canvasRow.length - 3].getText();
@@ -92,3 +96,4 @@ export default class VariableRect extends React.Component<Props, State, any> {
     return <Group>{list}</Group>;
   }
 }
+// VariableRect.contextType = ResourceContext;

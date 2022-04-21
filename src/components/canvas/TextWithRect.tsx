@@ -2,7 +2,7 @@ import React from 'react';
 import { Rect, Text } from 'react-konva';
 import { CanvasCell } from './CanvasDrawer';
 import hexToRgba from '../Color';
-import { ResourceContext } from '../ResourceContext';
+// import { ResourceContext, AnswerContextType } from '../ResourceContext';
 
 interface Props {
   x: number;
@@ -23,8 +23,8 @@ interface State {
 }
 
 export default class TextWithRect extends React.Component<Props, State> {
-  static contextType = ResourceContext;
-  context!: React.ContextType<typeof ResourceContext>;
+  // static contextType = ResourceContext;
+  // context!: React.ContextType<typeof ResourceContext>;
 
   public static readonly ACCENT_COLOR = '#ff4b00';
   constructor(props: Props) {
@@ -59,10 +59,10 @@ export default class TextWithRect extends React.Component<Props, State> {
       fill,
     } = this.props;
 
-    const { answered, toggleAnswered } = this.context;
-    toggleAnswered(false);
-    console.log(answered);
-    console.log(toggleAnswered);
+    // const { answered, toggleAnswered }: AnswerContextType = this.context;
+    // console.log('TextWithRect: ' + answered);
+    // console.log('TextWithRect: ' + toggleAnswered);
+    const answered = true;
 
     const height = CanvasCell.HEIGHT;
     const isAlignCenter = align && align === 'center';
@@ -132,3 +132,4 @@ export default class TextWithRect extends React.Component<Props, State> {
     );
   }
 }
+// TextWithRect.contextType = ResourceContext;

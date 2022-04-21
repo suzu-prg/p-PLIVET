@@ -5,3 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AppWithLang from './components/AppWithLang';
 
 ReactDOM.render(<AppWithLang />, document.getElementById('root'));
+
+// import App from './test/app';
+// ReactDOM.render(<App />, document.getElementById('root'));
